@@ -8,19 +8,21 @@ import lombok.NoArgsConstructor;
 /**
  * @author qiuyun
  * @version 1.0
- * Create by 2024/5/26 15:10
+ * Create by 2024/5/30 10:37
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("userInfo")
-public class UserInfoDO {
+@TableName("custom_emoji")
+public class CustomEmojiDO {
 
-    private Long uid;
+    private Long id;
 
-    private String name;
+    private String emojiName;
 
-//    private String headIcon;
+    private String emojiSet;
 
-    private String description;
+    private String pic_url;
+
+    private Integer order;
 }

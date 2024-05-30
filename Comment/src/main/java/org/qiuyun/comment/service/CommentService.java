@@ -2,7 +2,6 @@ package org.qiuyun.comment.service;
 
 import org.qiuyun.comment.dao.entity.CommentDO;
 import org.qiuyun.comment.dto.CommentReqDTO;
-//import org.qiuyun.comment.dto.CommentDOReqDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -14,10 +13,12 @@ import java.util.Map;
  */
 
 public interface CommentService {
-    void createCommentDO(CommentReqDTO requestParam);
+    void createComment(CommentReqDTO requestParam);
 
-    void createReply(CommentReqDTO requestParam, int uid, int beRepliedId);//新建回复
-    CommentDO findById(int id);//通过id查找评论
+    void createReply(CommentReqDTO requestParam);//新建回复
+    CommentDO findById(Long id);//通过id查找评论
+    List<CommentDO> findByPid(Long pid);//通过pid查找子评论
+    List<CommentDO> findByVideoid(Long videoId);//通过pid查找子评论
     void deleteCommentDO(CommentDO target);//删除评论
     List<CommentDO> findAll();
 //    Page<CommentDO> findByPage(int type, Long rid, int pid, Pageable pageable);//分页查询评论

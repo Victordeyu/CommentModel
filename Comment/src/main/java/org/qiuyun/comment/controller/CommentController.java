@@ -1,15 +1,15 @@
 package org.qiuyun.comment.controller;
 
-import lombok.Data;
+
 import lombok.RequiredArgsConstructor;
+import org.qiuyun.comment.dao.entity.CommentDO;
 import org.qiuyun.comment.dto.CommentReqDTO;
 import org.qiuyun.comment.service.CommentService;
 import org.qiuyun.common.web.Result;
 import org.qiuyun.common.web.Results;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author qiuyun
@@ -21,9 +21,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/api/comment-service/create")
+    @PostMapping("/api/comment-service/createComment")
     public Result<Void> createComment(@RequestBody CommentReqDTO requestParam){
-        commentService.createCommentDO(requestParam);
+        commentService.createComment(requestParam);
         return Results.success();
+    }
+
+    @PostMapping("/api/comment-service/createReply")
+    public Result<Void> createReply(@RequestBody CommentReqDTO requestParam){
+        commentService.createReply(requestParam);
+        return Results.success();
+    }
+
+    @GetMapping("/api/comment-service/queryById")
+    public Result<CommentDO> queryById(@RequestParam("comment_id")Long id){
+        return Results.success(commentService.findById(id));
+    }
+
+    @GetMapping("/api/comment-service/queryByPid")
+    public Result<List<CommentDO>> queryByPid(@RequestParam("comment_pid")Long pid){
+        return Results.success(commentService.findByPid(pid));
+    }
+
+    @GetMapping("/api/comment-service/queryByVid")
+    public Result<List<CommentDO>> queryByVid(@RequestParam("comment_vid")Long vid){
+        return Results.success(commentService.findByVideoid(vid));
     }
 }

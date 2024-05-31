@@ -3,6 +3,7 @@ package org.qiuyun.comment.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.qiuyun.comment.dao.entity.CommentDO;
+import org.qiuyun.comment.dto.CommentDeleteReqDTO;
 import org.qiuyun.comment.dto.CommentReqDTO;
 import org.qiuyun.comment.service.CommentService;
 import org.qiuyun.common.web.Result;
@@ -47,4 +48,11 @@ public class CommentController {
     public Result<List<CommentDO>> queryByVid(@RequestParam("comment_vid")Long vid){
         return Results.success(commentService.findByVideoid(vid));
     }
+
+    @PostMapping("/api/comment-service/deleteComment")
+    public Result<Void> deleteComment(@RequestBody CommentDeleteReqDTO requestParam){
+        commentService.deleteComment(requestParam.getId());
+        return Results.success();
+    }
+
 }

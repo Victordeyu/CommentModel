@@ -2,6 +2,7 @@ package org.qiuyun.comment.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,20 +14,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("custom_emoji")
-public class CustomEmojiDO {
+@Builder
+@TableName("custom_emoji_set")
+public class CustomEmojiSetDO {
 
     private Long id;
 
-    private String emojiName;
-
     private String emojiSet;
 
-    private String pic_url;
-
-    private Integer displayOrder;
-
     private Long authorId;
+
+    private Integer usageFreq;
 
     private Boolean delFlag;
 }

@@ -19,11 +19,11 @@ public interface CommentService {
     CommentDO findById(Long id);//通过id查找评论
     List<CommentDO> findByPid(Long pid);//通过pid查找子评论
     List<CommentDO> findByVideoid(Long videoId);//通过pid查找子评论
-    void deleteCommentDO(CommentDO target);//删除评论
+    void deleteComment(Long id);//删除评论
     List<CommentDO> findAll();
 //    Page<CommentDO> findByPage(int type, Long rid, int pid, Pageable pageable);//分页查询评论
-    List<CommentDO> findSonCommentDOByPid(Integer pid, Map<String, String> commentDOMap);//分页查询子评论
-    List<CommentDO> findSonCommentDOByPid(Integer pid, Integer offset, Integer size);//分页查询子评论
+//    List<CommentDO> findSonCommentDOByPid(Integer pid, Map<String, String> commentDOMap);//分页查询子评论
+//    List<CommentDO> findSonCommentDOByPid(Integer pid, Integer offset, Integer size);//分页查询子评论
     Integer countByPid(Integer pid);//统计父评论下子评论数目
     boolean isCorrectCommentDO(Map<String, String> commentDOMap, StringBuffer message);
 }

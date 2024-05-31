@@ -37,13 +37,13 @@ public class CommentServiceImpl implements CommentService {
 //        String username = UserContext.getUsername();
 
         try{
-            System.out.println(requestParam);
+//            System.out.println(requestParam);
             CommentDO commentDO= BeanUtil.convert(requestParam,CommentDO.class);
             commentDO.setCreateTime(new Date());
             commentDO.setThumbNums(0);
             commentDO.setSonCommentNums(0);
             commentDO.setDelFlag(false);
-            System.out.println(commentDO);
+//            System.out.println(commentDO);
             int inserted=commentMapper.insert(commentDO);
             System.out.println("insert完毕"+inserted);
             if (!SqlHelper.retBool(inserted)) {
@@ -115,8 +115,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteCommentDO(CommentDO target) {
-
+    public void deleteComment(Long id) {
+        CommentDO commentDO=commentMapper.selectById(id);
+        commentDO.setDelFlag(true);
+        LambdaUpdateWrapper<CommentDO>updateWrapper=new LambdaUpdateWrapper<>();
+        updateWrapper.eq(CommentDO::getId,id);
+        commentMapper.update(commentDO,updateWrapper);
     }
 
     @Override
@@ -124,15 +128,10 @@ public class CommentServiceImpl implements CommentService {
         return null;
     }
 
-    @Override
-    public List<CommentDO> findSonCommentDOByPid(Integer pid, Map<String, String> commentDOMap) {
-        return null;
-    }
-
-    @Override
-    public List<CommentDO> findSonCommentDOByPid(Integer pid, Integer offset, Integer size) {
-        return null;
-    }
+//    @Override
+//    public List<CommentDO> findSonCommentDOByPid(Integer pid, Integer offset, Integer size) {
+//        return null;
+//    }
 
     @Override
     public Integer countByPid(Integer pid) {

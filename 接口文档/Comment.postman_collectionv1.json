@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "e289744c-1c97-4358-8a78-0ef235585575",
+		"name": "Comment",
+		"description": "评论模块",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33748605"
+	},
+	"item": [
+		{
+			"name": "createComment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTIxMzQxNTEsImlzcyI6ImluZGV4MTIzMDYiLCJzdWIiOiJ7XCJyZWFsTmFtZVwiOlwic3VubW95YVwiLFwidXNlcklkXCI6XCIxNzc1NDQ1MDM4NjUwNzI0MzUyXCIsXCJ1c2VybmFtZVwiOlwic215XCJ9IiwiZXhwIjoxNzEyMjIwNTUxfQ.iB1oNS-oTZT9EiTP4Pinbp12QZkhCFQO_z9-XG8EZM42MX4VMtsfMHL3TWD5HJ5sThZDa2UV2n0m-k689IuSow",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "ed76703e-8324-484e-b7e0-024f364fa2e3"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"videoId\": 456,\r\n  \"uid\": 789,\r\n  \"pid\":  13453,\r\n  \"content\": \"This is aasdqwd sample reply.\",\r\n  \"picUrls\": [\r\n    \"https://example.com/image1.jpg\",\r\n    \"https://example.com/image2.jpg\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8079/api/comment-service/createComment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8079",
+					"path": [
+						"api",
+						"comment-service",
+						"createComment"
+					]
+				},
+				"description": "创建一条评论"
+			},
+			"response": []
+		},
+		{
+			"name": "createReply",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTIxMzQxNTEsImlzcyI6ImluZGV4MTIzMDYiLCJzdWIiOiJ7XCJyZWFsTmFtZVwiOlwic3VubW95YVwiLFwidXNlcklkXCI6XCIxNzc1NDQ1MDM4NjUwNzI0MzUyXCIsXCJ1c2VybmFtZVwiOlwic215XCJ9IiwiZXhwIjoxNzEyMjIwNTUxfQ.iB1oNS-oTZT9EiTP4Pinbp12QZkhCFQO_z9-XG8EZM42MX4VMtsfMHL3TWD5HJ5sThZDa2UV2n0m-k689IuSow",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "0b802569-de21-430c-a58d-ee40ebd34097"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"videoId\": 456,\r\n  \"uid\": 789,\r\n  \"pid\":  13453,\r\n  \"content\": \"This is aasdqwd sample reply.\",\r\n  \"picUrls\": [\r\n    \"https://example.com/image1.jpg\",\r\n    \"https://example.com/image2.jpg\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8079/api/comment-service/createReply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8079",
+					"path": [
+						"api",
+						"comment-service",
+						"createReply"
+					]
+				},
+				"description": "创建一条评论"
+			},
+			"response": []
+		},
+		{
+			"name": "queryById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8079/api/comment-service/queryById?comment_id=13453",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8079",
+					"path": [
+						"api",
+						"comment-service",
+						"queryById"
+					],
+					"query": [
+						{
+							"key": "comment_id",
+							"value": "13453",
+							"description": "评论id"
+						}
+					]
+				},
+				"description": "查询某个视频下某条评论的所有评论。\n\n如果vid为空，则查询某评论的子评论。\n\n如果id为空，查询某视频的所有评论。"
+			},
+			"response": [
+				{
+					"name": "query",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/api/comment-service/queryById?comment_id=13453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"api",
+								"comment-service",
+								"queryById"
+							],
+							"query": [
+								{
+									"key": "comment_id",
+									"value": "13453",
+									"description": "评论id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 May 2024 05:41:35 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"message\": null,\n    \"data\": {\n        \"id\": 13453,\n        \"videoId\": 456,\n        \"uid\": 789,\n        \"pid\": 123,\n        \"createTime\": \"2024-05-30T05:04:40.000+00:00\",\n        \"content\": \"This is a sample comment.\",\n        \"picUrls\": null,\n        \"sonCommentNums\": 1,\n        \"thumbNums\": 0,\n        \"delFlag\": false\n    },\n    \"requestId\": null,\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "queryByPid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8079/api/comment-service/queryByPid?comment_pid=13453",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8079",
+					"path": [
+						"api",
+						"comment-service",
+						"queryByPid"
+					],
+					"query": [
+						{
+							"key": "comment_pid",
+							"value": "13453",
+							"description": "评论id\n"
+						}
+					]
+				},
+				"description": "查询某条评论的所有评论。"
+			},
+			"response": [
+				{
+					"name": "queryById Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/api/comment-service/queryByPid?comment_pid=13453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"api",
+								"comment-service",
+								"queryByPid"
+							],
+							"query": [
+								{
+									"key": "comment_pid",
+									"value": "13453",
+									"description": "评论id\n"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 May 2024 05:42:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"message\": null,\n    \"data\": [\n        {\n            \"id\": 13455,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 13453,\n            \"createTime\": \"2024-05-30T05:13:17.000+00:00\",\n            \"content\": \"This is aasdqwd sample reply.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 0,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        },\n        {\n            \"id\": 13456,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 13453,\n            \"createTime\": \"2024-05-30T05:15:38.000+00:00\",\n            \"content\": \"This is aasdqwd sample reply.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 0,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        }\n    ],\n    \"requestId\": null,\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "queryByVid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8079/api/comment-service/queryByVid?comment_vid=456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8079",
+					"path": [
+						"api",
+						"comment-service",
+						"queryByVid"
+					],
+					"query": [
+						{
+							"key": "comment_vid",
+							"value": "456",
+							"description": "评论id\n"
+						}
+					]
+				},
+				"description": "查询某个视频下某条评论的所有评论。\n\n如果vid为空，则查询某评论的子评论。\n\n如果id为空，查询某视频的所有评论。"
+			},
+			"response": [
+				{
+					"name": "queryByVid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8079/api/comment-service/queryByVid?comment_vid=456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8079",
+							"path": [
+								"api",
+								"comment-service",
+								"queryByVid"
+							],
+							"query": [
+								{
+									"key": "comment_vid",
+									"value": "456",
+									"description": "评论id\n"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 30 May 2024 05:43:31 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"0\",\n    \"message\": null,\n    \"data\": [\n        {\n            \"id\": 13453,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 123,\n            \"createTime\": \"2024-05-30T05:04:40.000+00:00\",\n            \"content\": \"This is a sample comment.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 1,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        },\n        {\n            \"id\": 13454,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 123,\n            \"createTime\": \"2024-05-30T05:07:18.000+00:00\",\n            \"content\": \"This is a sample comment.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 0,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        },\n        {\n            \"id\": 13455,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 13453,\n            \"createTime\": \"2024-05-30T05:13:17.000+00:00\",\n            \"content\": \"This is aasdqwd sample reply.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 0,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        },\n        {\n            \"id\": 13456,\n            \"videoId\": 456,\n            \"uid\": 789,\n            \"pid\": 13453,\n            \"createTime\": \"2024-05-30T05:15:38.000+00:00\",\n            \"content\": \"This is aasdqwd sample reply.\",\n            \"picUrls\": null,\n            \"sonCommentNums\": 0,\n            \"thumbNums\": 0,\n            \"delFlag\": false\n        }\n    ],\n    \"requestId\": null,\n    \"success\": true\n}"
+				}
+			]
+		}
+	]
+}

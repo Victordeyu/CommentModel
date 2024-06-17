@@ -21,6 +21,8 @@
     <modules>
         <module>comment-dependencies</module>
         <module>Comment</module>
+        <module>frameworks</module>
+        <module>identify-service</module>
     </modules>
 
     <dependencies>

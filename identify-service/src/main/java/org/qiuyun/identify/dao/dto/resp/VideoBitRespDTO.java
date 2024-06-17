@@ -2,8 +2,7 @@ package org.qiuyun.identify.dao.dto.resp;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,7 +12,13 @@ import java.util.List;
  * Create by 2024/6/17 20:14
  */
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class VideoBitRespDTO {
     private Long videoId;
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Byte> bit;
 }

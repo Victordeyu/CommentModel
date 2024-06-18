@@ -1,11 +1,10 @@
 package org.qiuyun.identify.dao.dto.req;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 /**
  * @author qiuyun
@@ -17,7 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VideoBitSetReqDTO {
+
+    @NotNull
     private Long videoId;
 
+    @NotNull
     private Byte[] bit;
 }

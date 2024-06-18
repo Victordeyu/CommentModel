@@ -1,5 +1,6 @@
 package org.qiuyun.identify.dao.dto.req;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VideoBitQueryReqDTO {
+    @NotNull
     private Long videoId;//对于uid用户来说，uid_list下的bit数组。
 }

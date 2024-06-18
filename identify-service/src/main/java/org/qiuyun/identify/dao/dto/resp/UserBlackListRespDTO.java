@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author qiuyun
  * @version 1.0
- * Create by 2024/6/17 19:50
+ * Create by 2024/6/18 10:01
  */
 @Builder
 @Getter
@@ -17,8 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserBitRespDTO {
-    private Long Uid;
+public class UserBlackListRespDTO {
+    private Long id;
+    private Long uid;
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<List<Byte>> bit;
+    private List<Long> blackUsr;
 }

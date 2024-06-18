@@ -3,6 +3,7 @@ package org.qiuyun.identify.service;
 import org.qiuyun.identify.dao.dto.req.*;
 import org.qiuyun.identify.dao.dto.resp.CommentBitRespDTO;
 import org.qiuyun.identify.dao.dto.resp.UserBitRespDTO;
+import org.qiuyun.identify.dao.dto.resp.UserBlackListRespDTO;
 import org.qiuyun.identify.dao.dto.resp.VideoBitRespDTO;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public interface IdentifyService {
      * @param userBitReqDTO
      * @return
      */
-    public List<UserBitRespDTO> userDimIdentify(UserBitReqDTO userBitReqDTO);
+    public UserBitRespDTO userDimIdentify(UserBitReqDTO userBitReqDTO);
 
+    public UserBlackListRespDTO queryBlackList(long uid);
     public void addUserBlackList(UserBlackListReqDTO userBlackListReqDTO);
 
     public void removeUserBlackList(UserBlackListReqDTO userBlackListReqDTO);

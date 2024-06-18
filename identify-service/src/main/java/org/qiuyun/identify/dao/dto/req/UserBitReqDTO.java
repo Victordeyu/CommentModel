@@ -1,5 +1,6 @@
 package org.qiuyun.identify.dao.dto.req;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBitReqDTO {
+    @NotNull
     private Long uid;//对于uid用户来说，uid_list下的bit数组。
     private List<Long> uid_list;
 }

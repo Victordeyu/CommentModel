@@ -12,6 +12,7 @@ import org.qiuyun.identify.dao.dto.resp.CommentBitRespDTO;
 import org.qiuyun.identify.dao.dto.resp.UserBitRespDTO;
 import org.qiuyun.identify.dao.dto.resp.UserBlackListRespDTO;
 import org.qiuyun.identify.dao.dto.resp.VideoBitRespDTO;
+import org.qiuyun.identify.dao.entity.CommentBitDO;
 import org.qiuyun.identify.dao.entity.UserBlackListDO;
 import org.qiuyun.identify.dao.entity.VideoBitDO;
 import org.qiuyun.identify.dao.mapper.CommentBitMapper;
@@ -152,13 +153,53 @@ public class IdentifyServiceImpl implements IdentifyService {
         }
     }
 
+    /**
+     * 查询单条评论的标识符
+     * 如果没有存储，则默认为全0
+     * TODO 评论维度和视频维度比较类似，可以合并为同一段代码。
+     * @param commentId
+     * @return CommentBitRespDTO
+     */
     @Override
-    public List<CommentBitRespDTO> commentDimIdentify(CommentBitReqDTO commentBitReqDTO) {
-        return null;
+    public CommentBitRespDTO commentDimIdentify(Long commentId) {
+//        Long commentId=commentBitReqDTO.getCommentId();
+        LambdaQueryWrapper<CommentBitDO>wrapper=new LambdaQueryWrapper<>();
+        wrapper.eq(CommentBitDO::getCommentId,commentId);
+        List<CommentBitDO>commentBitDOList=commentBitMapper.selectList(wrapper);
+        Byte[]bits=new Byte[BitCommon.BIT_COMMON_MAX_BIT.getValue()];
+        Arrays.fill(bits,(byte)0);
+        //TODO 此处越界异常如何处理
+        commentBitDOList.forEach(commentBitDO->{
+            if(commentBitDO.getType()<BitCommon.BIT_COMMON_MAX_BIT.getValue()-1)//存储的tyep大于最大支持的Bit位数
+                bits[commentBitDO.getType()]=1;
+        });
+        return CommentBitRespDTO.builder().commentId(commentId).bit(Arrays.stream(bits).toList()).build();
     }
 
     @Override
     public void updateCommentDimIdentify(CommentBitSetReqDTO commentBitSetReqDTO) {
+        Long commentId=commentBitSetReqDTO.getCommentId();
+        LambdaQueryWrapper<CommentBitDO> wrapper=new LambdaQueryWrapper<>();
+        wrapper.eq(CommentBitDO::getCommentId,commentId);
+        commentBitMapper.delete(wrapper);
 
+        Byte[]bits=commentBitSetReqDTO.getBit();
+        for(int i=0;i<bits.length;i++){
+            if(bits[i]==1) {
+                int insert = commentBitMapper.insert(CommentBitDO.builder().commentId(commentId).type(i).val(true).build());
+                if (!SqlHelper.retBool(insert)) {
+                    throw new ServiceException(String.format("[%s] 添加用户维度标识符失败" , commentId));
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<CommentBitRespDTO> commentDimBatchIdentify(CommentBitBatchReqDTO commentBitBatchReqDTO) {
+        List<CommentBitRespDTO>commentBitDOList=new ArrayList<>();
+        commentBitBatchReqDTO.getCommentIds().forEach(commentId->{
+            commentBitDOList.add(commentDimIdentify(commentId));
+        });
+        return commentBitDOList;
     }
 }

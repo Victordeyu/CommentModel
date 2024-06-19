@@ -21,26 +21,28 @@ public interface IdentifyService {
      * @param userBitReqDTO
      * @return
      */
-    public UserBitRespDTO userDimIdentify(UserBitReqDTO userBitReqDTO);
+    UserBitRespDTO userDimIdentify(UserBitReqDTO userBitReqDTO);
 
-    public UserBlackListRespDTO queryBlackList(long uid);
-    public void addUserBlackList(UserBlackListReqDTO userBlackListReqDTO);
+    UserBlackListRespDTO queryBlackList(long uid);
+    void addUserBlackList(UserBlackListReqDTO userBlackListReqDTO);
 
-    public void removeUserBlackList(UserBlackListReqDTO userBlackListReqDTO);
+    void removeUserBlackList(UserBlackListReqDTO userBlackListReqDTO);
 
-    public void banUserBlackList(UserBannedReqDTO userBannedReqDTO);
+    void banUserBlackList(UserBannedReqDTO userBannedReqDTO);
 
     /**
      * 查询视频维度下的标识Bit
      * @param videoBitQueryReqDTO
      * @return
      */
-    public VideoBitRespDTO videoDimIdentify(VideoBitQueryReqDTO videoBitQueryReqDTO);
+    VideoBitRespDTO videoDimIdentify(VideoBitQueryReqDTO videoBitQueryReqDTO);
 
-    public void updateVideoDimIdentify(VideoBitSetReqDTO videoBitSetReqDTO);
+    void updateVideoDimIdentify(VideoBitSetReqDTO videoBitSetReqDTO);
 
 
-    public List<CommentBitRespDTO> commentDimIdentify(CommentBitReqDTO commentBitReqDTO);
+    CommentBitRespDTO commentDimIdentify(Long commentId);
 
-    public void updateCommentDimIdentify(CommentBitSetReqDTO commentBitSetReqDTO);
+    void updateCommentDimIdentify(CommentBitSetReqDTO commentBitSetReqDTO);
+
+    List<CommentBitRespDTO> commentDimBatchIdentify(CommentBitBatchReqDTO commentBitBatchReqDTO);
 }

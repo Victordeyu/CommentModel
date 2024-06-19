@@ -2,16 +2,16 @@ package org.qiuyun.identify.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.qiuyun.common.web.Results;
 import org.qiuyun.common.web.Result;
-import org.qiuyun.identify.dao.dto.req.UserBitReqDTO;
-import org.qiuyun.identify.dao.dto.req.UserBlackListReqDTO;
-import org.qiuyun.identify.dao.dto.req.VideoBitQueryReqDTO;
-import org.qiuyun.identify.dao.dto.req.VideoBitSetReqDTO;
+import org.qiuyun.common.web.Results;
+import org.qiuyun.identify.dao.dto.req.*;
+import org.qiuyun.identify.dao.dto.resp.CommentBitRespDTO;
 import org.qiuyun.identify.dao.dto.resp.UserBitRespDTO;
 import org.qiuyun.identify.dao.dto.resp.VideoBitRespDTO;
 import org.qiuyun.identify.service.IdentifyService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -52,5 +52,20 @@ public class IdentifyController {
         return Results.success();
     }
 
+    @PostMapping("/api/identify-service/updateCommentDimIdentify")
+    public Result<Void> updateCommentDimIdentify(@RequestBody@Valid CommentBitSetReqDTO requestParam){
+        identifyService.updateCommentDimIdentify(requestParam);
+        return Results.success();
+    }
 
+    @GetMapping("/api/identify-service/commentDimIdentify")
+    public Result<CommentBitRespDTO> commentDimIdentify(@RequestParam@Valid Long requestParam){
+        return Results.success(identifyService.commentDimIdentify(requestParam));
+    }
+
+    @PostMapping("/api/identify-service/commentDimBatchIdentify")
+    public Result<List<CommentBitRespDTO>>commentDimBatchIdentify(@RequestBody CommentBitBatchReqDTO requestParam){
+        return Results.success(identifyService.commentDimBatchIdentify(requestParam));
+
+    }
 }

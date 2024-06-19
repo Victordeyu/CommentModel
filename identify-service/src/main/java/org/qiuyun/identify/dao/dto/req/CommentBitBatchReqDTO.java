@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 /**
  * @author qiuyun
@@ -16,8 +18,8 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentBitReqDTO {
+public class CommentBitBatchReqDTO {
     @NotNull
-    private Long commentId;//对于uid用户来说，uid_list下的bit数组。
+    private List<Long> commentIds;//对于uid用户来说，uid_list下的bit数组。
 
 }
